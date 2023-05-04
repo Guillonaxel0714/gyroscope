@@ -24,6 +24,8 @@ function orientation () {
   }
 }
 
+orientation();
+
 const degToRad = (deg) =>  deg * (Math.PI / 180);
 
 const scene = new THREE.Scene();

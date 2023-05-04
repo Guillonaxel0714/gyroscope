@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 let alpha, beta, gamma = 0;
 
-function orientation () {
+function getOrientation () {
   alert('Please allow orientation access');
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     DeviceOrientationEvent.requestPermission()
@@ -25,7 +25,7 @@ function orientation () {
   }
 }
 
-orientation();
+getOrientation();
 
 const degToRad = (deg) =>  deg * (Math.PI / 180);
 

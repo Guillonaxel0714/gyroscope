@@ -10,6 +10,7 @@ function getOrientation() {
     alert('Please allow access to the gyroscope')
     DeviceOrientationEvent.requestPermission()
       .then(permissionState => {
+        alert('Permission granted')
         if (permissionState === 'granted') {
           window.addEventListener('deviceorientation', (event) => {
             alpha = event.alpha;
@@ -18,7 +19,10 @@ function getOrientation() {
           });
         }
       })
-      .catch(console.error);
+      .catch((err) => {
+        alert('Permission denied')
+        console.error(err);
+      });
   } else {
     window.addEventListener('deviceorientation', (event) => {
       alpha = event.alpha;

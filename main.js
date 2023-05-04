@@ -4,7 +4,7 @@ import * as THREE from 'three';
 let alpha, beta, gamma = 0;
 
 if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-  DeviceOrientationEvent.requestPermission()
+  DeviceMotionEvent.requestPermission()
     .then(permissionState => {
       if (permissionState === 'granted') {
         window.addEventListener('deviceorientation', (event) => {

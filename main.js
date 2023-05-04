@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 let alpha, beta, gamma = 0;
 
-function click () {
+function oriantation () {
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     DeviceOrientationEvent.requestPermission()
       .then(permissionState => {
@@ -24,7 +24,7 @@ function click () {
   }
 }
 
-click();
+oriantation();
 
 const degToRad = (deg) =>  deg * (Math.PI / 180);
 

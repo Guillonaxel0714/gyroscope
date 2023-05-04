@@ -5,11 +5,29 @@ import {
 
 let alpha, beta, gamma = 0;
 
-window.addEventListener('deviceorientation', (event) => {
-  alpha = event.alpha;
-  beta = event.beta;
-  gamma = event.gamma;
-});
+function getOrientation() {
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission()
+      .then(permissionState => {
+        if (permissionState === 'granted') {
+          window.addEventListener('deviceorientation', (event) => {
+            alpha = event.alpha;
+            beta = event.beta;
+            gamma = event.gamma;
+          });
+        }
+      })
+      .catch(console.error);
+  } else {
+    window.addEventListener('deviceorientation', (event) => {
+      alpha = event.alpha;
+      beta = event.beta;
+      gamma = event.gamma;
+    });
+  }
+}
+
+getOrientation();
 
 const degToRad = (deg) => deg * (Math.PI / 280);
 

@@ -1,7 +1,5 @@
 import * as THREE from 'three';
 
-window.addEventListener("deviceorientation", handleOrientation, true);
-
 let alpha, beta, gamma = 0;
 
 if (typeof DeviceOrientationEvent.requestPermission === 'function') {

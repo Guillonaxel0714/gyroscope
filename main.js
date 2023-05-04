@@ -3,7 +3,6 @@ import * as THREE from 'three';
 let alpha, beta, gamma = 0;
 
 function click () {
-  alert("get clicked");
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     DeviceOrientationEvent.requestPermission()
       .then(permissionState => {
@@ -39,7 +38,7 @@ renderer.setAnimationLoop(animate);
 document.body.appendChild(renderer.domElement);
 
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({
+const material = new THREE.MeshNormalMaterial({
   color: 0x00ff00
 });
 const cube = new THREE.Mesh(geometry, material);

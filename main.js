@@ -20,7 +20,7 @@ function getOrientation() {
         }
       })
       .catch((err) => {
-        alert('Permission denied', err)
+        alert('Permission denied = ' + JSON.stringify(err))
         console.error(err);
       });
   } else {

@@ -7,6 +7,7 @@ let alpha, beta, gamma = 0;
 
 function getOrientation() {
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    alert('Please allow access to the gyroscope')
     DeviceOrientationEvent.requestPermission()
       .then(permissionState => {
         if (permissionState === 'granted') {
@@ -74,14 +75,6 @@ loader.load(
 
     // Ajoute l'objet à la scène
     scene.add(object);
-  },
-  function (xhr) {
-    // Fonction de progression
-    console.log((xhr.loaded / xhr.total * 100) + '% chargé');
-  },
-  function (error) {
-    // Fonction d'erreur
-    console.error('Erreur de chargement', error);
   }
 );
 

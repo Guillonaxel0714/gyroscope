@@ -36,7 +36,7 @@ scene.add(directionalLight);
 // Charge le modèle GLTF en utilisant GLTFLoader
 const loader = new GLTFLoader();
 loader.load(
-  '/assets/maze.gltf',
+  'maze.gltf',
   function (gltf) {
 
     // Récupère l'objet principal de la scène du modèle GLTF

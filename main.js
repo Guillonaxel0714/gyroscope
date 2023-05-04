@@ -3,7 +3,6 @@ import * as THREE from 'three';
 let alpha, beta, gamma = 0;
 
 function getOrientation () {
-  alert('Please allow orientation access');
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     DeviceOrientationEvent.requestPermission()
       .then(permissionState => {

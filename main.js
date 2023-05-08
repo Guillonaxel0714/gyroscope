@@ -31,12 +31,14 @@ let alpha, beta, gamma = 0;
 document.getElementById('btn').addEventListener('click', requestMotionPermission);
 
 async function requestMotionPermission() {
-  alert('requestMotionPermission');
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-    alert('typeof DeviceOrientationEvent.requestPermission === \'function\'');
     // La fonction est prise en charge par le navigateur
     const permission = await DeviceOrientationEvent.requestPermission()
-    alert(permission);
+    window.addEventListener('deviceorientation', (event) => {
+      alpha = event.alpha;
+      beta = event.beta;
+      gamma = event.gamma;
+    });
   } else {
     // La fonction n'est pas prise en charge par le navigateur
     alert('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');

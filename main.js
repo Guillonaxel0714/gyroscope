@@ -9,6 +9,7 @@ if (typeof DeviceMotionEvent.requestPermission === 'function') {
   // La fonction est prise en charge par le navigateur
   DeviceMotionEvent.requestPermission()
     .then(permissionState => {
+      alert(permissionState);
       if (permissionState === 'granted') {
         // L'autorisation a été accordée
         // Vous pouvez maintenant écouter les événements DeviceMotion

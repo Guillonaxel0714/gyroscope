@@ -30,11 +30,10 @@ let alpha, beta, gamma = 0;
 
 async function requestMotionPermission() {
   alert('requestMotionPermission');
-  if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    alert('typeof DeviceMotionEvent.requestPermission === \'function\'');
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    alert('typeof DeviceOrientationEvent.requestPermission === \'function\'');
     // La fonction est prise en charge par le navigateur
-
-    const permission = await DeviceMotionEvent.requestPermission()
+    const permission = await DeviceOrientationEvent.requestPermission()
     alert(permission);
   } else {
     // La fonction n'est pas prise en charge par le navigateur

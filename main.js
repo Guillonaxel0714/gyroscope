@@ -75,9 +75,8 @@ loader.load(
       const acceleration = event.accelerationIncludingGravity;
 
       if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
-        alert('You win !');
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-        object.material.color.set('#' + randomColor);
+        maze.material.color.set('#' + randomColor);
       }
     });
   },

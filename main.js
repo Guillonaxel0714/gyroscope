@@ -5,34 +5,31 @@ import {
 
 let alpha, beta, gamma = 0;
 
-function getOrientation() {
-  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-    alert('Please allow access to the gyroscope')
-    DeviceOrientationEvent.requestPermission()
-      .then(permissionState => {
-        alert('Permission granted')
-        if (permissionState === 'granted') {
-          window.addEventListener('deviceorientation', (event) => {
-            alpha = event.alpha;
-            beta = event.beta;
-            gamma = event.gamma;
-          });
-        }
-      })
-      .catch((err) => {
-        alert('Permission denied = ' + JSON.stringify(err))
-        console.error(err);
-      });
-  } else {
-    window.addEventListener('deviceorientation', (event) => {
-      alpha = event.alpha;
-      beta = event.beta;
-      gamma = event.gamma;
-    });
-  }
+if (typeof DeviceMotionEvent.requestPermission === 'function') {
+  // La fonction est prise en charge par le navigateur
+  DeviceMotionEvent.requestPermission()
+    .then(permissionState => {
+      if (permissionState === 'granted') {
+        // L'autorisation a été accordée
+        alert('Autorisation accordée');
+        // Vous pouvez maintenant écouter les événements DeviceMotion
+        window.addEventListener('devicemotion', handleMotionEvent);
+      }
+    })
+    .catch(console.error);
+} else {
+  // La fonction n'est pas prise en charge par le navigateur
+  console.error('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
 }
 
-getOrientation();
+// Fonction de gestion de l'événement de mouvement
+function handleMotionEvent(event) {
+  // Faites quelque chose avec les données de mouvement ici
+  console.log(event.acceleration);
+  console.log(event.accelerationIncludingGravity);
+  console.log(event.rotationRate);
+  console.log(event.interval);
+}
 
 const degToRad = (deg) => deg * (Math.PI / 280);
 

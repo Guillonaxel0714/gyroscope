@@ -11,7 +11,7 @@ document.getElementById('btn').addEventListener('click', requestMotionPermission
 // Function to request the permission for the motion for ios devices
 async function requestMotionPermission() {
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-    // La fonction est prise en charge par le navigateur
+    // Function is supported
     const permission = await DeviceOrientationEvent.requestPermission()
     window.addEventListener('deviceorientation', (event) => {
       alpha = event.alpha;
@@ -19,7 +19,7 @@ async function requestMotionPermission() {
       gamma = event.gamma;
     });
   } else {
-    // La fonction n'est pas prise en charge par le navigateur
+    // function isn't supported
     window.addEventListener('deviceorientation', (event) => {
       alpha = event.alpha;
       beta = event.beta;
@@ -29,6 +29,15 @@ async function requestMotionPermission() {
 }
 
 requestMotionPermission();
+
+window.addEventListener('devicemotion', function (event) {
+  const acceleration = event.accelerationIncludingGravity;
+
+  if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
+    const randomColor = Math.floor(Math.random() * 16);
+    object.material.color.set('#' + randomColor);
+  }
+});
 
 const degToRad = (deg) => deg * (Math.PI / 180);
 
@@ -43,39 +52,37 @@ renderer.setAnimationLoop(animate);
 document.body.appendChild(renderer.domElement);
 
 camera.position.z = 100;
-// Créer une lumière ambiante
+// create ambiant light
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
 
-// Créer une lumière directionnelle
+// create directional light
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
 directionalLight.position.set(1, 1, 1);
 scene.add(directionalLight);
 
-// Charge le modèle GLTF en utilisant GLTFLoader
+// load GLTF model
 const loader = new GLTFLoader();
 loader.load(
   'maze.gltf',
   function (gltf) {
-
-    // Récupère l'objet principal de la scène du modèle GLTF
     const object = gltf.scene.children[0];
 
-    // Récupère le matériau de l'objet
+    // materials
+    const color5 = new THREE.Color( 'skyblue' );
     object.material = new THREE.MeshStandardMaterial({
-      color: 0xff0000 // Rouge
+      color: color5
     });
 
     // Redimensionne l'objet
     object.scale.set(0.5, 0.5, 0.5); // Par exemple, divise la taille par 2
 
-    // Ajoute l'objet à la scène
+    // add object to the scene
     scene.add(object);
   }
 );
 
 function animate() {
-
   scene.rotation.z = degToRad(alpha) / 2;
   scene.rotation.x = degToRad(beta);
   scene.rotation.y = degToRad(gamma);

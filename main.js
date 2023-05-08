@@ -76,7 +76,7 @@ loader.load(
     window.addEventListener('devicemotion', function (event) {
       const acceleration = event.accelerationIncludingGravity;
 
-      if (!isCooldown && (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15)) {
+      if (!isCooldown && (acceleration.x > 10 || acceleration.y > 10 || acceleration.z > 10)) {
         const randomColor = Math.floor(Math.random() * 16777215).toString(16);
         maze.material.color.set('#' + randomColor);
 
@@ -84,7 +84,7 @@ loader.load(
 
         setTimeout(function () {
           isCooldown = false;
-        }, 5000); // Temps de récupération de 2000 millisecondes (2 secondes)
+        }, 2000); // Temps de récupération de 2000 millisecondes (2 secondes)
       }
     });
   },

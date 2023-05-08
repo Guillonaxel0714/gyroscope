@@ -60,9 +60,9 @@ loader.load(
     const maze = gltf.scene.children[0];
 
     // materials
-    const color5 = new THREE.Color( 'red' );
+    const color = new THREE.Color( 'skyblue' );
     maze.material = new THREE.MeshStandardMaterial({
-      color: color5
+      color: color
     });
 
     // Redimensionne l'objet
@@ -79,7 +79,11 @@ loader.load(
         maze.material.color.set('#' + randomColor);
       }
     });
-  }
+  },
+
+  function (xhr) {
+    console.log((xhr.loaded / xhr.total * 100) + '% chargé');
+  },
 );
 
 function animate() {

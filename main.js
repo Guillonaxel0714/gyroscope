@@ -30,15 +30,6 @@ async function requestMotionPermission() {
 
 requestMotionPermission();
 
-window.addEventListener('devicemotion', function (event) {
-  const acceleration = event.accelerationIncludingGravity;
-
-  if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
-    const randomColor = Math.floor(Math.random() * 16);
-    object.material.color.set('#' + randomColor);
-  }
-});
-
 const degToRad = (deg) => deg * (Math.PI / 180);
 
 const scene = new THREE.Scene();
@@ -79,6 +70,15 @@ loader.load(
 
     // add object to the scene
     scene.add(object);
+
+    window.addEventListener('devicemotion', function (event) {
+      const acceleration = event.accelerationIncludingGravity;
+
+      if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
+        const randomColor = Math.floor(Math.random() * 16);
+        object.material.color.set('#' + randomColor);
+      }
+    });
   }
 );
 

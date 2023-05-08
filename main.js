@@ -60,7 +60,7 @@ loader.load(
     const maze = gltf.scene.children[0];
 
     // materials
-    const color = new THREE.Color( 'skyblue' );
+    const color = new THREE.Color('skyblue');
     maze.material = new THREE.MeshStandardMaterial({
       color: color
     });
@@ -71,14 +71,20 @@ loader.load(
     // add maze to the scene
     scene.add(maze);
 
+    var isCooldown = false;
+
     window.addEventListener('devicemotion', function (event) {
       const acceleration = event.accelerationIncludingGravity;
 
-      if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
-        setTimeout(function() {
-          const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-          maze.material.color.set('#' + randomColor);
-        }, 10000);
+      if (!isCooldown && (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15)) {
+        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        maze.material.color.set('#' + randomColor);
+
+        isCooldown = true;
+
+        setTimeout(function () {
+          isCooldown = false;
+        }, 5000); // Temps de récupération de 2000 millisecondes (2 secondes)
       }
     });
   },

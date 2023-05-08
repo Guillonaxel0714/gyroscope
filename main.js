@@ -11,7 +11,6 @@ if (typeof DeviceMotionEvent.requestPermission === 'function') {
     .then(permissionState => {
       if (permissionState === 'granted') {
         // L'autorisation a été accordée
-        alert('Autorisation accordée');
         // Vous pouvez maintenant écouter les événements DeviceMotion
         window.addEventListener('devicemotion', handleMotionEvent);
       }
@@ -25,10 +24,7 @@ if (typeof DeviceMotionEvent.requestPermission === 'function') {
 // Fonction de gestion de l'événement de mouvement
 function handleMotionEvent(event) {
   // Faites quelque chose avec les données de mouvement ici
-  console.log(event.acceleration);
-  console.log(event.accelerationIncludingGravity);
-  console.log(event.rotationRate);
-  console.log(event.interval);
+  alert('Mouvement détecté');
 }
 
 const degToRad = (deg) => deg * (Math.PI / 280);

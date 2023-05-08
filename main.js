@@ -32,10 +32,10 @@ async function requestMotionPermission() {
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
     // La fonction est prise en charge par le navigateur
     const permission = await DeviceMotionEvent.requestPermission()
-    console.log(permission);
+    alert(permission);
   } else {
     // La fonction n'est pas prise en charge par le navigateur
-    console.error('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
+    alert('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
   }
 }
 

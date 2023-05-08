@@ -29,8 +29,11 @@ let alpha, beta, gamma = 0;
 // }
 
 async function requestMotionPermission() {
+  alert('requestMotionPermission');
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
+    alert('typeof DeviceMotionEvent.requestPermission === \'function\'');
     // La fonction est prise en charge par le navigateur
+
     const permission = await DeviceMotionEvent.requestPermission()
     alert(permission);
   } else {

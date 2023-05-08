@@ -65,7 +65,7 @@ loader.load(
       color: color
     });
 
-    // Resize the maze
+    // Resize the object
     maze.scale.set(0.5, 0.5, 0.5); // Par exemple, divise la taille par 2
 
     // add maze to the scene
@@ -73,12 +73,13 @@ loader.load(
 
     window.addEventListener('devicemotion', function (event) {
       const acceleration = event.accelerationIncludingGravity;
-      setTimeout(function() {
-        if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
+
+      if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
+        setTimeout(function() {
           const randomColor = Math.floor(Math.random() * 16777215).toString(16);
           maze.material.color.set('#' + randomColor);
-        }
-      )}, 10000);
+        }, 10000);
+      }
     });
   },
 

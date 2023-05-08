@@ -75,7 +75,7 @@ loader.load(
       const acceleration = event.accelerationIncludingGravity;
 
       if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
-        const randomColor = Math.floor(Math.random() * 16).toString(16);
+        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
         maze.material.color.set('#' + randomColor);
       }
     });

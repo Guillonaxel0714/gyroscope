@@ -5,28 +5,41 @@ import {
 
 let alpha, beta, gamma = 0;
 
-if (typeof DeviceMotionEvent.requestPermission === 'function') {
-  // La fonction est prise en charge par le navigateur
-  DeviceMotionEvent.requestPermission()
-    .then(permissionState => {
-      alert(permissionState);
-      if (permissionState === 'granted') {
-        // L'autorisation a été accordée
-        // Vous pouvez maintenant écouter les événements DeviceMotion
-        window.addEventListener('devicemotion', handleMotionEvent);
-      }
-    })
-    .catch(console.error);
-} else {
-  // La fonction n'est pas prise en charge par le navigateur
-  console.error('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
+// if (typeof DeviceMotionEvent.requestPermission === 'function') {
+//   // La fonction est prise en charge par le navigateur
+//   DeviceMotionEvent.requestPermission()
+//     .then(permissionState => {
+//       alert(permissionState);
+//       if (permissionState === 'granted') {
+//         // L'autorisation a été accordée
+//         // Vous pouvez maintenant écouter les événements DeviceMotion
+//         window.addEventListener('devicemotion', handleMotionEvent);
+//       }
+//     })
+//     .catch(console.error);
+// } else {
+//   // La fonction n'est pas prise en charge par le navigateur
+//   console.error('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
+// }
+
+// // Fonction de gestion de l'événement de mouvement
+// function handleMotionEvent(event) {
+//   // Faites quelque chose avec les données de mouvement ici
+//   alert('Mouvement détecté');
+// }
+
+async function requestMotionPermission() {
+  if (typeof DeviceMotionEvent.requestPermission === 'function') {
+    // La fonction est prise en charge par le navigateur
+    const permission = await DeviceMotionEvent.requestPermission()
+    console.log(permission);
+  } else {
+    // La fonction n'est pas prise en charge par le navigateur
+    console.error('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
+  }
 }
 
-// Fonction de gestion de l'événement de mouvement
-function handleMotionEvent(event) {
-  // Faites quelque chose avec les données de mouvement ici
-  alert('Mouvement détecté');
-}
+requestMotionPermission();
 
 const degToRad = (deg) => deg * (Math.PI / 280);
 

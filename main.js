@@ -71,8 +71,8 @@ loader.load(
     // add maze to the scene
     scene.add(maze);
 
+    // add a cooldown to the motion event
     var isCooldown = false;
-
     window.addEventListener('devicemotion', function (event) {
       const acceleration = event.accelerationIncludingGravity;
 

@@ -47,7 +47,7 @@ async function requestMotionPermission() {
 
 requestMotionPermission();
 
-const degToRad = (deg) => deg * (Math.PI / 280);
+const degToRad = (deg) => deg * (Math.PI / 180);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
@@ -85,10 +85,6 @@ loader.load(
 
     // Redimensionne l'objet
     object.scale.set(0.5, 0.5, 0.5); // Par exemple, divise la taille par 2
-
-    // Incliner légèrement le mesh vers l'arrière
-    object.rotation.x = -0.99;
-    object.rotation.y = 0.5;
 
     // Ajoute l'objet à la scène
     scene.add(object);

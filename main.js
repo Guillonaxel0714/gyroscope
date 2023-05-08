@@ -5,31 +5,10 @@ import {
 
 let alpha, beta, gamma = 0;
 
-// if (typeof DeviceMotionEvent.requestPermission === 'function') {
-//   // La fonction est prise en charge par le navigateur
-//   DeviceMotionEvent.requestPermission()
-//     .then(permissionState => {
-//       alert(permissionState);
-//       if (permissionState === 'granted') {
-//         // L'autorisation a été accordée
-//         // Vous pouvez maintenant écouter les événements DeviceMotion
-//         window.addEventListener('devicemotion', handleMotionEvent);
-//       }
-//     })
-//     .catch(console.error);
-// } else {
-//   // La fonction n'est pas prise en charge par le navigateur
-//   console.error('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
-// }
-
-// // Fonction de gestion de l'événement de mouvement
-// function handleMotionEvent(event) {
-//   // Faites quelque chose avec les données de mouvement ici
-//   alert('Mouvement détecté');
-// }
-
+// On click on the button, we request the permission for the motion for ios devices
 document.getElementById('btn').addEventListener('click', requestMotionPermission);
 
+// Function to request the permission for the motion for ios devices
 async function requestMotionPermission() {
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
     // La fonction est prise en charge par le navigateur
@@ -41,7 +20,11 @@ async function requestMotionPermission() {
     });
   } else {
     // La fonction n'est pas prise en charge par le navigateur
-    alert('DeviceMotionEvent.requestPermission n\'est pas prise en charge.');
+    window.addEventListener('deviceorientation', (event) => {
+      alpha = event.alpha;
+      beta = event.beta;
+      gamma = event.gamma;
+    });
   }
 }
 

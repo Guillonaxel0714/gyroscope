@@ -57,26 +57,26 @@ const loader = new GLTFLoader();
 loader.load(
   'maze.gltf',
   function (gltf) {
-    const object = gltf.scene.children[0];
+    const maze = gltf.scene.children[0];
 
     // materials
-    const color5 = new THREE.Color( 'skyblue' );
-    object.material = new THREE.MeshStandardMaterial({
+    const color5 = new THREE.Color( 'red' );
+    maze.material = new THREE.MeshStandardMaterial({
       color: color5
     });
 
     // Redimensionne l'objet
-    object.scale.set(0.5, 0.5, 0.5); // Par exemple, divise la taille par 2
+    maze.scale.set(0.5, 0.5, 0.5); // Par exemple, divise la taille par 2
 
-    // add object to the scene
-    scene.add(object);
+    // add maze to the scene
+    scene.add(maze);
 
     window.addEventListener('devicemotion', function (event) {
       const acceleration = event.accelerationIncludingGravity;
 
       if (acceleration.x > 15 || acceleration.y > 15 || acceleration.z > 15) {
         const randomColor = Math.floor(Math.random() * 16);
-        object.material.color.set('#' + randomColor);
+        maze.material.color.set('#' + randomColor);
       }
     });
   }

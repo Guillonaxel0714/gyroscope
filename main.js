@@ -28,6 +28,8 @@ let alpha, beta, gamma = 0;
 //   alert('Mouvement détecté');
 // }
 
+document.getElementById('btn').addEventListener('click', requestMotionPermission);
+
 async function requestMotionPermission() {
   alert('requestMotionPermission');
   if (typeof DeviceOrientationEvent.requestPermission === 'function') {
